@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3e5f5;
+            color: #4a148c;
+        }
+
+        .navbar {
+            background-color: #6a1b9a;
+            padding: 1rem;
+            color: white;
+            text-align: center;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #6a1b9a;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 0.5rem 0 0.2rem;
+            font-weight: bold;
+            color: #6a1b9a;
+        }
+
+        input, textarea {
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 0.8rem;
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #4a148c;
+        }
+
+        .feedback-message {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .success-message {
+            color: green;
+        }
+
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <h1>Help Form</h1>
+    </header>
+
+    <div class="form-container">
+        <h2>Submit a Help Request</h2>
+        <form id="helpForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+
+            <label for="issueDescription">Describe Your Issue:</label>
+            <textarea id="issueDescription" name="issueDescription" rows="5" placeholder="Provide details about your issue..." required></textarea>
+
+            <button type="button" onclick="submitHelpRequest()">Submit Request</button>
+        </form>
+
+        <div id="feedbackMessage" class="feedback-message"></div>
+    </div>
+
+    <script>
+        async function submitHelpRequest() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const issueDescription = document.getElementById('issueDescription').value;
+
+            const feedbackMessage = document.getElementById('feedbackMessage');
+
+            try {
+                const response = await fetch('http://localhost:8080/api/help', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, issueDescription }),
+                });
+
+                if (response.ok) {
+                    feedbackMessage.textContent = "Help request submitted successfully!";
+                    feedbackMessage.className = "feedback-message success-message";
+                    document.getElementById('helpForm').reset();
+                } else {
+                    feedbackMessage.textContent = "Failed to submit help request. Please try again.";
+                    feedbackMessage.className = "feedback-message error-message";
+                }
+            } catch (error) {
+                feedbackMessage.textContent = "An error occurred. Please try again later.";
+                feedbackMessage.className = "feedback-message error-message";
+                console.error("Error:", error);
+            }
+        }
+    </script>
+</body>
+</html>

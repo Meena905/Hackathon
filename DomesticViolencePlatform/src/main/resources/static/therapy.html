@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapy Sessions</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://i.pinimg.com/736x/a4/19/1a/a4191a14b99fd4f5396699177d830669.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #4a148c;
+        }
+
+        .navbar {
+            background-color: rgba(106, 27, 154, 0.8);
+            padding: 1rem;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-links li {
+            margin: 0 1rem;
+        }
+
+        .navbar-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: #d1c4e9;
+        }
+
+        .content-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #6a1b9a;
+            font-size: 2rem;
+        }
+
+        .therapist-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .therapist-card {
+            background-color: #f3e5f5;
+            border-radius: 10px;
+            padding: 1rem;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .therapist-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .therapist-card h3 {
+            margin: 0.5rem 0;
+            color: #4a148c;
+        }
+
+        .therapist-card p {
+            font-size: 0.9rem;
+            color: #6a1b9a;
+        }
+
+        .book-session {
+            margin-top: 1rem;
+        }
+
+        .book-session label {
+            display: block;
+            font-size: 0.9rem;
+            color: #6a1b9a;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-session input {
+            padding: 0.8rem;
+            width: 100%;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .book-session button {
+            background-color: #8e44ad;
+            color: white;
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .book-session button:hover {
+            background-color: #5e3370;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="index.html" class="navbar-logo">Domestic Violence Platform</a>
+                <ul class="navbar-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Sign Up</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="support.html">Support Groups</a></li>
+                    <li><a href="therapy.html">Therapy Sessions</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Content -->
+    <div class="content-container">
+        <h1>Therapy Sessions</h1>
+        <p>Select a therapist and book your session by choosing a suitable date and time.</p>
+
+        <div class="therapist-section">
+            <div class="therapist-card">
+                <img src="https://i.pinimg.com/736x/8c/c7/ae/8cc7ae438e9907fe6049d494a62c95a9.jpg" alt="Therapist 1">
+                <h3>Dr. Alice Morgan</h3>
+                <p>Ph.D. in Clinical Psychology<br>10+ years of experience<br>Specializes in trauma therapy</p>
+                <div class="book-session">
+                    <label for="date1">Select Date:</label>
+                    <input type="date" id="date1">
+                    <button onclick="bookSession('Dr. Alice Morgan', 'date1')">Book Session</button>
+                </div>
+            </div>
+
+            <div class="therapist-card">
+                <img src="https://i.pinimg.com/736x/90/1f/03/901f0330bb844d81d7fb0ed4a49d67e1.jpg" alt="Therapist 2">
+                <h3>Dr. Briana Lee</h3>
+                <p>Master's in Counseling Psychology<br>8+ years of experience<br>Specializes in anxiety and depression</p>
+                <div class="book-session">
+                    <label for="date2">Select Date:</label>
+                    <input type="date" id="date2">
+                    <button onclick="bookSession('Dr. Briana Lee', 'date2')">Book Session</button>
+                </div>
+            </div>
+
+            <div class="therapist-card">
+                <img src="https://i.pinimg.com/736x/fa/c7/75/fac775835a002c7f1ca161b1efa6e82e.jpg" alt="Therapist 3">
+                <h3>Dr. Clara Smith</h3>
+                <p>Licensed Psychotherapist<br>12+ years of experience<br>Specializes in relationship counseling</p>
+                <div class="book-session">
+                    <label for="date3">Select Date:</label>
+                    <input type="date" id="date3">
+                    <button onclick="bookSession('Dr. Clara Smith', 'date3')">Book Session</button>
+                </div>
+            </div>
+
+            <div class="therapist-card">
+                <img src="https://i.pinimg.com/736x/5d/ea/c3/5deac3296927862d06e73661c1bb7720.jpg" alt="Therapist 4">
+                <h3>Dr. Daniel Green</h3>
+                <p>Certified Mental Health Counselor<br>7+ years of experience<br>Specializes in stress management</p>
+                <div class="book-session">
+                    <label for="date4">Select Date:</label>
+                    <input type="date" id="date4">
+                    <button onclick="bookSession('Dr. Daniel Green', 'date4')">Book Session</button>
+                </div>
+            </div>
+
+            <div class="therapist-card">
+                <img src="https://i.pinimg.com/736x/2a/fc/41/2afc41056e52ea491d17e71fc3f74ccb.jpg" alt="Therapist 5">
+                <h3>Dr. Emily Brown</h3>
+                <p>Doctorate in Family Therapy<br>9+ years of experience<br>Specializes in family conflict resolution</p>
+                <div class="book-session">
+                    <label for="date5">Select Date:</label>
+                    <input type="date" id="date5">
+                    <button onclick="bookSession('Dr. Emily Brown', 'date5')">Book Session</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function bookSession(therapistName, dateId) {
+            const selectedDate = document.getElementById(dateId).value;
+            if (selectedDate) {
+                alert(`Session booked with ${therapistName} on ${selectedDate}.`);
+            } else {
+                alert('Please select a date before booking.');
+            }
+        }
+    </script>
+</body>
+</html>

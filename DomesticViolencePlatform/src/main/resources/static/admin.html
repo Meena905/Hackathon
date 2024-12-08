@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3e5f5;
+            color: #4a148c;
+        }
+
+        .navbar {
+            background-color: #6a1b9a;
+            padding: 1rem;
+            color: white;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .content-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #6a1b9a;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 1rem 0;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #6a1b9a;
+            font-size: 1.2rem;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 0.8rem;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #6a1b9a;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f3e5f5;
+        }
+
+        table tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <h1>Admin Dashboard</h1>
+    </header>
+
+    <div class="content-container">
+        <h2>Manage Platform</h2>
+        <ul>
+            <li><a href="#users-section">Manage Users</a></li>
+            <li><a href="#therapists-section">Manage Therapists</a></li>
+            <li><a href="#reports-section">View Reports</a></li>
+            <li><a href="#messages-section">View Contact Messages</a></li>
+            <li><a href="#help-requests-section">View Help Requests</a></li>
+        </ul>
+    </div>
+
+    <div id="users-section" class="content-container">
+        <h2>Manage Users</h2>
+        <div id="users-table"></div>
+    </div>
+
+    <div id="therapists-section" class="content-container">
+        <h2>Manage Therapists</h2>
+        <div id="therapists-table"></div>
+    </div>
+
+    <div id="reports-section" class="content-container">
+        <h2>View Reports</h2>
+        <div id="reports-data"></div>
+    </div>
+
+    <div id="messages-section" class="content-container">
+        <h2>View Contact Messages</h2>
+        <div id="messages-table"></div>
+    </div>
+
+    <div id="help-requests-section" class="content-container">
+        <h2>View Help Requests</h2>
+        <div id="help-requests-table"></div>
+    </div>
+
+    <script>
+        async function fetchAndDisplayUsers() {
+            const response = await fetch('http://localhost:8080/api/admins/users');
+            const users = await response.json();
+            const usersTable = document.getElementById('users-table');
+            usersTable.innerHTML = '<table><tr><th>Name</th><th>Email</th></tr>' +
+                users.map(user => `<tr><td>${user.name}</td><td>${user.email}</td></tr>`).join('') +
+                '</table>';
+        }
+
+        async function fetchAndDisplayTherapists() {
+            const response = await fetch('http://localhost:8080/api/admins/therapists');
+            const therapists = await response.json();
+            const therapistsTable = document.getElementById('therapists-table');
+            therapistsTable.innerHTML = '<table><tr><th>Name</th><th>Email</th></tr>' +
+                therapists.map(therapist => `<tr><td>${therapist.name}</td><td>${therapist.email}</td></tr>`).join('') +
+                '</table>';
+        }
+
+        async function fetchAndDisplayReports() {
+            const response = await fetch('http://localhost:8080/api/admins/reports');
+            const reports = await response.json();
+            const reportsData = document.getElementById('reports-data');
+            reportsData.innerHTML = `
+                <p><strong>Total Users:</strong> ${reports.totalUsers}</p>
+                <p><strong>Total Therapists:</strong> ${reports.totalTherapists}</p>
+            `;
+        }
+
+        async function fetchAndDisplayMessages() {
+            const response = await fetch('http://localhost:8080/api/admins/messages');
+            const messages = await response.json();
+            const messagesTable = document.getElementById('messages-table');
+            messagesTable.innerHTML = '<table><tr><th>Name</th><th>Email</th><th>Message</th></tr>' +
+                messages.map(message => `
+                    <tr>
+                        <td>${message.name}</td>
+                        <td>${message.email}</td>
+                        <td>${message.message}</td>
+                    </tr>
+                `).join('') +
+                '</table>';
+        }
+
+        async function fetchAndDisplayHelpRequests() {
+            const response = await fetch('http://localhost:8080/api/help');
+            const helpRequests = await response.json();
+            const helpRequestsTable = document.getElementById('help-requests-table');
+            helpRequestsTable.innerHTML = '<table><tr><th>Name</th><th>Email</th><th>Issue Description</th></tr>' +
+                helpRequests.map(request => `
+                    <tr>
+                        <td>${request.name}</td>
+                        <td>${request.email}</td>
+                        <td>${request.issueDescription}</td>
+                    </tr>
+                `).join('') +
+                '</table>';
+        }
+
+        // Fetch all data on page load
+        fetchAndDisplayUsers();
+        fetchAndDisplayTherapists();
+        fetchAndDisplayReports();
+        fetchAndDisplayMessages();
+        fetchAndDisplayHelpRequests();
+    </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Shelter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3e5f5;
+            color: #4a148c;
+        }
+
+        .navbar {
+            background-color: #6a1b9a;
+            padding: 1rem;
+            color: white;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .search-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background: #e1bee7;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container label {
+            font-weight: bold;
+            color: #6a1b9a;
+        }
+
+        .search-container select,
+        .search-container input {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .search-container button {
+            padding: 0.8rem;
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .search-container button:hover {
+            background-color: #4a148c;
+        }
+
+        .shelter-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .shelter-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .shelter-card h3 {
+            color: #6a1b9a;
+        }
+
+        .shelter-card p {
+            margin: 0.5rem 0;
+        }
+
+        .shelter-card button {
+            padding: 0.5rem;
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .shelter-card button:hover {
+            background-color: #4a148c;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        Service Shelters in India
+    </header>
+
+    <div class="container">
+        <!-- Search Section -->
+        <div class="search-container">
+            <div>
+                <label for="state">State</label>
+                <select id="state" onchange="populateDistricts()">
+                    <option value="">Select State</option>
+                    <!-- States will be populated here -->
+                </select>
+            </div>
+            <div>
+                <label for="district">District</label>
+                <select id="district">
+                    <option value="">Select District</option>
+                    <!-- Districts will be populated here -->
+                </select>
+            </div>
+            <div>
+                <label for="pincode">Pincode</label>
+                <input type="text" id="pincode" placeholder="Enter Pincode">
+            </div>
+            <div>
+                <button onclick="searchShelters()">Search</button>
+            </div>
+        </div>
+
+        <!-- Shelter List Section -->
+        <div class="shelter-list" id="shelter-list">
+            <!-- Shelter cards will be displayed here -->
+        </div>
+    </div>
+<script>
+    // Data structure for states, districts, and shelters
+    const stateDistrictData = {
+        "Andhra Pradesh": ["Anantapur", "Chittoor", "East Godavari", "Guntur"],
+        "Arunachal Pradesh": ["Anjaw", "Changlang", "East Kameng"],
+        "Assam": ["Barpeta", "Bongaigaon", "Cachar"],
+        "Telangana": ["Hyderabad", "Warangal", "Nizamabad"],
+        "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai"],
+    };
+
+    const shelters = {
+        "Anantapur": [
+            { name: "Shelter A", address: "123 Main Street, Anantapur" },
+            { name: "Shelter B", address: "456 Second Avenue, Anantapur" }
+        ],
+        "Chittoor": [
+            { name: "Shelter C", address: "789 Third Street, Chittoor" }
+        ],
+        "Guntur": [
+            { name: "Shelter G1", address: "201 Vijaywada Road, Guntur" },
+            { name: "Shelter G2", address: "405 Nagarjuna Lane, Guntur" }
+        ],
+        "Hyderabad": [
+            { name: "Shelter D", address: "789 Pearl Road, Hyderabad" },
+            { name: "Shelter E", address: "501 Sapphire Lane, Hyderabad" }
+        ],
+        "Chennai": [
+            { name: "Shelter F", address: "102 Beach Road, Chennai" },
+            { name: "Shelter G", address: "302 Marina Bay, Chennai" }
+        ]
+    };
+
+    // Populate states dropdown
+    const stateSelect = document.getElementById("state");
+    for (const state in stateDistrictData) {
+        const option = document.createElement("option");
+        option.value = state;
+        option.textContent = state;
+        stateSelect.appendChild(option);
+    }
+
+    // Populate districts based on selected state
+    function populateDistricts() {
+        const districtSelect = document.getElementById("district");
+        districtSelect.innerHTML = '<option value="">Select District</option>';
+        const selectedState = stateSelect.value;
+        if (selectedState && stateDistrictData[selectedState]) {
+            stateDistrictData[selectedState].forEach(district => {
+                const option = document.createElement("option");
+                option.value = district;
+                option.textContent = district;
+                districtSelect.appendChild(option);
+            });
+        }
+    }
+
+    // Search shelters based on district
+    function searchShelters() {
+        const district = document.getElementById("district").value;
+        const shelterList = document.getElementById("shelter-list");
+        shelterList.innerHTML = "";
+
+        if (district && shelters[district]) {
+            shelters[district].forEach(shelter => {
+                const card = createShelterCard(shelter.name, shelter.address);
+                shelterList.appendChild(card);
+            });
+        } else {
+            shelterList.innerHTML = "<p>No shelters found for the selected district or pincode.</p>";
+        }
+    }
+
+    // Create shelter card
+    function createShelterCard(name, address) {
+        const card = document.createElement("div");
+        card.className = "shelter-card";
+        card.innerHTML = `
+            <h3>${name}</h3>
+            <p>${address}</p>
+            <button onclick="alert('Details for ${name}')">View Details</button>
+        `;
+        return card;
+    }
+</script>

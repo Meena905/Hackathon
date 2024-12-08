@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Help</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://i.pinimg.com/736x/a4/19/1a/a4191a14b99fd4f5396699177d830669.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #4a148c;
+        }
+
+        .navbar {
+            background-color: rgba(106, 27, 154, 0.8);
+            padding: 1rem;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-links li {
+            margin: 0 1rem;
+        }
+
+        .navbar-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: #d1c4e9;
+        }
+
+        .content-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #6a1b9a;
+        }
+
+        .emergency-section {
+            margin: 2rem 0;
+        }
+
+        .call-button {
+            background-color: #e74c3c;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .call-button:hover {
+            background-color: #c0392b;
+        }
+
+        .info-section {
+            margin: 2rem 0;
+            text-align: left;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .map-container {
+            margin: 2rem 0;
+            height: 300px;
+            border: 2px solid #6a1b9a;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="index.html" class="navbar-logo">Domestic Violence Platform</a>
+                <ul class="navbar-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="support.html">Support Groups</a></li>
+                    <li><a href="therapy.html">Therapy Sessions</a></li>
+                    <li><a href="emergency.html">Emergency Help</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Content -->
+    <div class="content-container">
+        <h1>Emergency Help</h1>
+        <p>If you are in immediate danger, please call the helpline below for assistance.</p>
+
+        <!-- Emergency Section -->
+        <div class="emergency-section">
+            <a class="call-button" href="tel:+911234567890">Call National Helpline</a>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>Steps to Take in an Emergency:</h3>
+            <ol>
+                <li>Call the national helpline immediately for professional assistance.</li>
+                <li>Contact trusted friends or family for support.</li>
+                <li>Document any incidents if it is safe to do so.</li>
+                <li>Seek shelter at the nearest support center if necessary.</li>
+            </ol>
+        </div>
+
+        <!-- Map Section -->
+        <h3>Find Nearby Support Centers in Andhra Pradesh:</h3>
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4042158.704481669!2d78.16424748671366!3d15.912899841926237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bca0b8163d15cb1%3A0x5ff2e33d8d1549b3!2sAndhra%20Pradesh%2C%20India!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+</body>
+</html>

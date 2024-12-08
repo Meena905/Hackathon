@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://i.pinimg.com/736x/a4/19/1a/a4191a14b99fd4f5396699177d830669.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #4a148c;
+        }
+
+        .navbar {
+            background-color: rgba(106, 27, 154, 0.8);
+            padding: 1rem;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .navbar-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-links li {
+            margin: 0 1rem;
+        }
+
+        .navbar-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: #d1c4e9;
+        }
+
+        .content-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #6a1b9a;
+            font-size: 2rem;
+        }
+
+        .affirmation {
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #6a1b9a;
+            text-align: center;
+            position: relative;
+            animation: side-to-side 5s infinite alternate ease-in-out;
+        }
+
+        @keyframes side-to-side {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(50px);
+            }
+        }
+
+        .books-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .book-card {
+            background-color: #f3e5f5;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 1rem;
+            width: 200px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: scale(1.05);
+        }
+
+        .book-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .book-card h3 {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            color: #4a148c;
+        }
+
+        .book-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .book-details {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 0.5rem;
+            border-radius: 10px;
+            display: none;
+            z-index: 100;
+            width: 90%;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .book-card:hover .book-details {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="index.html" class="navbar-logo">Domestic Violence Platform</a>
+                <ul class="navbar-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Sign Up</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="help.html">Help Form</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="therapy.html">Therapy Sessions</a></li>
+                    <li><a href="support.html">Support Groups</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Content -->
+    <div class="content-container">
+        <h1>Self-Help Resources</h1>
+
+        <!-- Dynamic Affirmation of the Day -->
+        <div class="affirmation" id="affirmation">
+            Loading your affirmation of the day...
+        </div>
+
+        <!-- Self-Help Books -->
+        <div class="books-section">
+            <!-- Book 1 -->
+            <div class="book-card">
+                <a href="https://www.amazon.com/dp/B07CGLS5DD" target="_blank">
+                    <img src="https://i.pinimg.com/736x/79/ae/1e/79ae1eb01fc72565e4893fa4d7ade667.jpg" alt="The Gifts of Imperfection">
+                    <h3>The Gifts of Imperfection</h3>
+                </a>
+                <div class="book-details">Embrace your flaws and live wholeheartedly.</div>
+            </div>
+            <!-- Book 2 -->
+            <div class="book-card">
+                <a href="https://www.amazon.com/dp/0937611018" target="_blank">
+                    <img src="https://i.pinimg.com/736x/09/e4/97/09e497b7dcc109287301d044d2635bb3.jpg" alt="You Can Heal Your Life">
+                    <h3>You Can Heal Your Life</h3>
+                </a>
+                <div class="book-details">A guide to positive thinking and transformation.</div>
+            </div>
+            <!-- Book 3 -->
+            <div class="book-card">
+                <a href="https://www.amazon.com/dp/0143127748" target="_blank">
+                    <img src="https://i.pinimg.com/736x/7b/37/c8/7b37c82cdb55b77c629617f2641f02cd.jpg" alt="The Body Keeps the Score">
+                    <h3>The Body Keeps the Score</h3>
+                </a>
+                <div class="book-details">Understanding trauma's impact on the body.</div>
+            </div>
+            <!-- Book 4 -->
+            <div class="book-card">
+                <a href="https://www.amazon.com/dp/1984801252" target="_blank">
+                    <img src="https://i.pinimg.com/736x/7c/29/1f/7c291f9ed58ab477c1e72f2ea6a679bf.jpg" alt="Untamed">
+                    <h3>Untamed</h3>
+                </a>
+                <div class="book-details">Discover how to live freely and authentically.</div>
+            </div>
+            <!-- Book 5 -->
+            <div class="book-card">
+                <a href="https://www.amazon.com/dp/0735211299" target="_blank">
+                    <img src="https://i.pinimg.com/736x/39/d9/d6/39d9d620d911c59cddd87302a2810bc3.jpg" alt="Atomic Habits">
+                    <h3>Atomic Habits</h3>
+                </a>
+                <div class="book-details">Tiny changes, remarkable results.</div>
+            </div>
+            <!-- Book 6 -->
+            <div class="book-card">
+                <a href="https://www.amazon.com/dp/1878424319" target="_blank">
+                    <img src="https://i.pinimg.com/736x/ac/8b/3a/ac8b3a6d6c525145a34fa2c0d968710c.jpg" alt="The Four Agreements">
+                    <h3>The Four Agreements</h3>
+                </a>
+                <div class="book-details">A practical guide to personal freedom.</div>
+            </div>
+            <!-- Book 7 -->
+            <div class="book-card">
+                <a href="https://www.amazon.com/dp/0553380990" target="_blank">
+                    <img src="https://i.pinimg.com/736x/94/7f/32/947f32c47d4b8d8f4bf4dd22bd683eaf.jpg" alt="Radical Acceptance">
+                    <h3>Radical Acceptance</h3>
+                </a>
+                <div class="book-details">Embrace your life with your heart wide open.</div>
+            </div>
+            <!-- Book 8 -->
+            <div class="book-card">
+                <a href="https://www.amazon.com/dp/0061733512" target="_blank">
+                    <img src="https://i.pinimg.com/736x/2c/61/5a/2c615a791c77b0ee4535501deb91f61b.jpg" alt="Self-Compassion">
+                    <h3>Self-Compassion</h3>
+                </a>
+                <div class="book-details">The proven power of being kind to yourself.</div>
+            </div>
+            <!-- Book 9 -->
+            <div class="book-card">
+                <a href="https://www.amazon.com/dp/159184949X" target="_blank">
+                    <img src="https://i.pinimg.com/736x/e3/03/b3/e303b392ea6ca0147573b341b5a37e97.jpg" alt="Emotional Agility">
+                    <h3>Emotional Agility</h3>
+                </a>
+                <div class="book-details">Get unstuck, embrace change, and thrive.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Array of affirmations
+        const affirmations = [
+            "I am worthy of love and respect.",
+            "I have the strength to overcome any challenge.",
+            "I deserve to feel safe and supported.",
+            "My past does not define my future.",
+            "I am enough, just as I am.",
+            "I choose peace and healing today.",
+            "Every step I take is a step toward my happiness.",
+            "I am in control of my life and my decisions."
+        ];
+
+        // Generate a random affirmation
+        const affirmationElement = document.getElementById('affirmation');
+        const randomAffirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
+        affirmationElement.textContent = `"${randomAffirmation}"`;
+    </script>
+</body>
+</html>

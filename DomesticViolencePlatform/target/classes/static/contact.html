@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://i.pinimg.com/736x/a4/19/1a/a4191a14b99fd4f5396699177d830669.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #4a148c;
+        }
+
+        .navbar {
+            background-color: #6a1b9a;
+            padding: 1rem;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .navbar-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-links li {
+            margin: 0 1rem;
+        }
+
+        .navbar-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: #d1c4e9;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 5rem auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #6a1b9a;
+            font-size: 2rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #6a1b9a;
+        }
+
+        input, textarea {
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Arial', sans-serif;
+        }
+
+        button {
+            padding: 0.8rem;
+            border: none;
+            background-color: #6a1b9a;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4a148c;
+        }
+
+        .decorative-image {
+            position: absolute;
+            width: 100px;
+            height: auto;
+        }
+
+        .decorative-image.left {
+            top: 10%;
+            left: 5%;
+        }
+
+        .decorative-image.right {
+            bottom: 10%;
+            right: 5%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="index.html" class="navbar-logo">Domestic Violence Platform</a>
+                <ul class="navbar-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Sign Up</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="help.html">Help Form</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="therapy.html">Therapy Sessions</a></li>
+                    <li><a href="support.html">Support Groups</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Decorative Images -->
+    <img src="https://i.pinimg.com/736x/18/be/61/18be618a5e4bdd0b0916542ae11e653f.jpg" class="decorative-image left" alt="Heart">
+    <img src="https://i.pinimg.com/736x/fc/bc/65/fcbc65edf0fde9a82013f9995a1e42f8.jpg" class="decorative-image right" alt="Flower">
+
+    <!-- Contact Us Form -->
+    <div class="form-container">
+        <h1>Contact Us</h1>
+        <form id="contactForm">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+
+            <button type="button" onclick="submitMessage()">Send Message</button>
+        </form>
+    </div>
+
+    <script>
+    async function loadContactMessages() {
+        try {
+            const response = await fetch('http://localhost:8080/api/contact/messages'); // Update URL if necessary
+            if (response.ok) {
+                const messages = await response.json();
+                const messageContainer = document.getElementById('contact-messages');
+                messages.forEach((message) => {
+                    const messageElement = document.createElement('div');
+                    messageElement.innerHTML = `
+                        <p><strong>Name:</strong> ${message.name}</p>
+                        <p><strong>Email:</strong> ${message.email}</p>
+                        <p><strong>Message:</strong> ${message.message}</p>
+                    `;
+                    messageContainer.appendChild(messageElement);
+                });
+            } else {
+                console.error("Failed to fetch messages:", response.status);
+            }
+        } catch (error) {
+            console.error("Error fetching messages:", error);
+        }
+    }
+    loadContactMessages();
+
+    </script>
+</body>
+</html>
